@@ -18,4 +18,4 @@ Route::middleware([
 });
 
 //menambah alamat ke pesanans
-Route::resource('pesanans', PesananController::class); 
+Route::get('pesanans', PesananController::class); 
