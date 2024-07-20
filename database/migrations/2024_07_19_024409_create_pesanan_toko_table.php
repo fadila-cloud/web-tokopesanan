@@ -5,12 +5,17 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePesananTokoTable extends Migration
 {
+    /**
+     * menjalankan migrasi
+     *
+     * @return void
+     */ 
     public function up()
     {
         Schema::create('pesanan_toko', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('toko_id');
-            $table->unsignedBigInteger('pesanan_id');
+            $table->unsignedBigInteger('toko_id'); 
+            $table->unsignedBigInteger('pesanan_id'); 
             $table->timestamps();
 
             $table->foreign('toko_id')->references('id')->on('tokos')->onDelete('cascade');
@@ -18,6 +23,11 @@ class CreatePesananTokoTable extends Migration
         });
     }
 
+    /**
+     * membalikkan migrasi
+     *
+     * @return void
+     */ 
     public function down()
     {
         Schema::dropIfExists('pesanan_toko');

@@ -1,23 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Daftar Pesanan</title>
-    </head>
-    <body>
-        <h1>Daftar Pesanan</h1>
-        <a href="{{route('pesanans.create')}}">Tambah Pesanan</a> 
-        <ul>
-            @foreach ($pesanans as $Pesanan)
-                <li>
-                    <a href="{{route('pesanans.show', $pesanan->id)}}">{{$pesanan->nama}}</a>
-                    <a href="{{route('pesanans.edit', $pesanan->id)}}">Edit</a> 
-                    <form action="{{route('pesanans.destroy', $pesanans->id)}}" method="POST" style="display:inline;">
-                        @csrf 
-                        @method('DELETE')
-                        <button type="submit">Hapus</button>
-                    </form>
-                </li>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <h1>Daftar Pesanan</h1>
+    <a href="{{ route('pesanans.create') }}" class="btn btn-primary mb-3">Tambah Pesanan</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Detail</th>
+                <th>Toko</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($pesanans as $pesanan)
+                <tr>
+                    <td>{{ $pesanan->name }}</td>
+                    <td>{{ $pesanan->details }}</td>
+                    <td>
+                        @foreach($pesanan->tokos as $toko)
+                            {{ $toko->name }}<br>
+                        @endforeach
+                    </td>
+                </tr>
             @endforeach
-        </ul> 
-    </body>
-</html>
+        </tbody>
+    </table>
+</div>
+@endsection

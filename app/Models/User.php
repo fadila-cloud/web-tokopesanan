@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models; 
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens;
-    use HasFactory;
+    use HasFactory, Notifiable; 
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
@@ -28,7 +28,16 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
+    //satu user boleh punya banyak toko
+    public function tokos()
+    {
+        return $this->hasMany(Toko::class); 
+    }
+    //satu user boleh punya banyak pesanan 
+    public function pesanan()
+    {
+        return $this->hasMany(Pesanan::class); 
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

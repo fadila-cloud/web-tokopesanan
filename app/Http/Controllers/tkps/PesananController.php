@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pesanan; 
+use App\Models\Toko; 
 use Illuminate\Http\Request;
 use Livewire\Exceptions\PublicPropertyNotFoundException;
 
@@ -11,14 +12,15 @@ class PesananController extends Controller
     //menampilkan daftar pesanan
     public function index()
     {
-        $pesanans = Pesanan::all;
+        $pesanans = Auth::user()->pesanans; 
         return view('pesanans.index', compact('pesanans')); 
     }
 
     //menampilkan form untuk menambah pesanan
     public function create()
     {
-        return view('pesanans.create'); 
+        $tokos = Auth::user()->tokos; 
+        return view('pesanans.create', compact('tokos')); 
     }
 
     //menyimpan pesanan baru ke database
@@ -29,7 +31,13 @@ class PesananController extends Controller
             'nama' => 'required|string|max255',
         ]); 
 
-        Pesanan::create($request->all()); 
+        $pesanans = new Pesanan();
+        $pesanans->name = $request->name;
+        $pesanans->details = $request->details;
+        $pesanans->user_id = Auth::id(); 
+        $pesanans->save(); 
+
+        $pesanans->tokos()->attach($request->toko_ids);  
         return redirect()->route('pesanans.index')->with('success', 'Pesanan berhasil ditambahkan'); 
     }
 
@@ -58,7 +66,7 @@ class PesananController extends Controller
     }
 
     //menghapus pesanan dari database 
-    public function destroy(Pesanan $pesanan)
+    public function destroy(Pesanan $pesanan) 
     {
         $pesanan->delete();
         return redirect()->route('pesanans.index')->with('success', 'Pesanan berhasil dihapus'); 
