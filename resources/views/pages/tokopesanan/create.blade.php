@@ -50,7 +50,7 @@
               </div>
               <div class="col-span-6 sm:col-span-4">
                 <label for="toko" class="form-label fw-bold">{{ __('Toko') }}</label>
-                <input id="toko" name="lokasi" type="text" class="form-control" placeholder="Jl. Ahmad Yani, Blitar" required autocomplete="toko">
+                <input id="toko" name="toko" type="text" class="form-control" placeholder="Toko Barokah" required autocomplete="toko">
               </div>
             </div>
             <div class="col col-span-6 sm:col-span-4 text-end mt-2">

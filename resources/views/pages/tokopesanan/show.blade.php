@@ -98,7 +98,7 @@
             </div>
             <div class="col text-end">
               <a class="btn btn-info" href="{{ route('pesanan.edit',$data["id"]) }}">
-                Edit Toko
+                Edit Pesanan 
               </a>
               <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePesanan">
                 Delete Pesanan 
@@ -118,6 +118,13 @@
                 <div class="col-2 fw-bold">Toko</div>
                 <div class="col text-end">:</div>
                 <div class="col-6">{{ $data["toko"] }}</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="row">
+                <div class="col-2 fw-bold">Total</div>
+                <div class="col text-end">:</div>
+                <div class="col-6">{{ $data["total"] }}</div> 
               </div>
             </div>
           </div>
