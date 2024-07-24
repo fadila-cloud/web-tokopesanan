@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Toko') }}
+        {{ __('Toko dan Pesanan') }} 
       </h2>
     </x-slot>
     
@@ -25,23 +25,23 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($datas as $data)
+            @foreach ($toko as $toko) 
               <tr>
                 <th class="text-center">
-                  <a href="{{ route('toko.show',$data['id']) }}">
+                  <a href="{{ route('toko.show',$toko['id']) }}">
                     <p>
-                      {{ $data['id'] }}
+                      {{ $toko['id'] }}
                     </p>
                   </a>
                 </th>
                 <th>
                   <p>
-                    {{ $data['nama_toko'] }}
+                    {{ $toko['nama_toko'] }}
                   </p>
                 </th>
                 <td>
                   <p>
-                    {{ $data['lokasi'] }}
+                    {{ $toko['lokasi'] }}
                   </p>
                 </td>
               </tr>
@@ -51,4 +51,43 @@
         </div>
       </div>
     </div>
-  </x-app-layout>
+              <!-- Pesanan Section -->
+              <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-2">
+                <div class="row pb-2">
+                    <div class="col">
+                        <h2 class="fs-2 fw-bold">Daftar Pesanan</h2>
+                    </div>
+                    <div class="col text-end">
+                        <a class="btn btn-info" href="{{ route('pesanan.create') }}">Buat Pesanan</a>
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nama Pesanan</th>
+                            <th scope="col">Toko</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pesanan as $pesanan)
+                        <tr>
+                            <th class="text-center">
+                                <a href="{{ route('pesanan.show', $pesanan['id']) }}">
+                                    <p>{{ $pesanan['id'] }}</p>
+                                </a>
+                            </th>
+                            <th>
+                                <p>{{ $pesanan['nama_pesanan'] }}</p>
+                            </th>
+                            <td>
+                                <p>{{ $pesanan['tanggal'] }}</p>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

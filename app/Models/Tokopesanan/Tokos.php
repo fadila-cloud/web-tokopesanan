@@ -16,7 +16,11 @@ class Tokos extends Model
    *
    * @var array
    */ 
-    protected $fillable = ['name_toko', 'lokasi', 'user_id']; 
+    protected $fillable = [
+        'user_id',
+        'nama_toko', 
+        'lokasi', 
+    ];  
 
       /**
    * Get the user associated with the model.

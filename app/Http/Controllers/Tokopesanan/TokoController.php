@@ -26,7 +26,7 @@ class TokoController extends Controller
         // Return the page view with order has been searched
         return view('pages.tokopesanan.index', compact('toko'));
       }
-  /**
+  /** 
    * Show the form for creating a new resource.
    */
     //menampilkan form untuk merubah toko 
@@ -55,97 +55,92 @@ class TokoController extends Controller
           'user_id' => Auth::user()->id,
         ]);
          // Redirect back to the page with a success message
-         return redirect()->route('toko.index')->with('success', 'Toko berhasil dibuat.');
-        } catch (\Throwable $e) {
-          // Log error message if failed to create a store 
-          Log::error($e->getMessage());
+        return redirect()->route('toko.index')->with('success', 'Toko berhasil dibuat.');
+    }   catch (\Throwable $e) {
+        // Log error message if failed to create a store 
+        Log::error($e->getMessage());
     
-          // Redirect back to the page with an error message
-          return redirect()->route('toko.index')->with('error', 'Toko gagal dibuat.');
-        }
-      }
+        // Redirect back to the page with an error message
+        return redirect()->route('toko.index')->with('error', 'Toko gagal dibuat.');
+    }
+    }
     
-      /**
-       * Display the specified resource.
-       */
-      public function show(Tokos $toko) 
-      {
-        // Get store data with connected user information
-        $toko->load('user'); 
-
-        // Return the page view with store
-        return view('pages.tokopesanan.show', compact('toko'));  
-      }
+    /**
+      * Display the specified resource.
+      */
+    public function show(Tokos $toko) 
+    {
+      // Get store data with connected user information
+      $toko->load('user'); 
+      // Return the page view with store
+      return view('pages.tokopesanan.show', compact('toko'));  
+    }
     
       /**
        * Show the form for editing the specified resource.
        */
-      public function edit($id)
-      {
-        // Find a store based on the id
-        $toko = Tokos::findOrFail($id); 
-    
-        // Return the form view edit with the store data
-        return view('pages.tokopesanan.edit', compact('toko'));
-      }
+    public function edit($id)
+    {
+      // Find a store based on the id
+      $toko = Tokos::findOrFail($id); 
+      // Return the form view edit with the store data
+      return view('pages.tokopesanan.edit', compact('toko'));
+    }
     
       /**
        * Update the specified resource in storage.
        */
-      public function update(Request $request, string $id)
-      {
-        // Validate the input data
-        $request->validate([
-          'nama_toko' => 'required',
-          'lokasi' => 'required',
-        ]);
+    public function update(Request $request, string $id)
+    {
+      // Validate the input data
+      $request->validate([
+        'nama_toko' => 'required',
+        'lokasi' => 'required',
+      ]);
     
-        // Try to update the store
-        try {
-          // Find a store based on the id
-          $toko = Tokos::findOrFail($id);
+      // Try to update the store
+      try {
+        // Find a store based on the id
+        $toko = Tokos::findOrFail($id);
+        // Update the store name and publisher
+        $toko->nama_toko = $request->nama_toko;
+        $toko->lokasi = $request->lokasi;
+        // Save the changes
+        $toko->save(); 
     
-          // Update the store name and publisher
-          $toko->nama_toko = $request->nama_toko;
-          $toko->lokasi = $request->lokasi;
+        // Redirect back to the page with a success message
+        return redirect()->route('toko.index')->with('success', 'Sumber daya berhasil diperbarui');
+      } catch (\Throwable $e) {
+        // Log error message if failed to update store
+        Log::error($e->getMessage());
     
-          // Save the changes
-          $toko->save(); 
-    
-          // Redirect back to the page with a success message
-          return redirect()->route('toko.index')->with('success', 'Sumber daya berhasil diperbarui');
-        } catch (\Throwable $e) {
-          // Log error message if failed to update store
-          Log::error($e->getMessage());
-    
-          // Redirect back to the  page with an error message
-          return redirect()->route('toko.index')->with('error', 'Sumber daya gagal diperbarui');
-        }
+        // Redirect back to the  page with an error message
+        return redirect()->route('toko.index')->with('error', 'Sumber daya gagal diperbarui');
       }
+    }
     
       /**
        * Remove the specified resource from storage.
        */
-      public function destroy(string $id)
-      {
-        // Try to delete the store
-        try {
-          // Find a store based on the id
-          $toko = Tokos::findOrFail($id); 
+    public function destroy(string $id)
+    {
+      // Try to delete the store
+      try {
+        // Find a store based on the id
+        $toko = Tokos::findOrFail($id); 
+        // Delete the store
+        $toko->delete();
     
-          // Delete the store
-          $toko->delete();
+        // Redirect back to the page with a success message
+        return redirect()->route('toko.index')->with('success', 'Sumber daya berhasil dihapus');
+      } catch (\Throwable $e) {
+        // Log error message if failed to delete store
+        Log::error($e->getMessage());
     
-          // Redirect back to the page with a success message
-          return redirect()->route('toko.index')->with('success', 'Sumber daya berhasil dihapus');
-        } catch (\Throwable $e) {
-          // Log error message if failed to delete store
-          Log::error($e->getMessage());
-    
-          // Go back to the previous page with an error message
-          return back()->withErrors(['error' => 'Sumber daya gagal dihapus!']);
-        }
+        // Go back to the previous page with an error message
+        return back()->withErrors(['error' => 'Sumber daya gagal dihapus!']);
       }
     }
+}
 
 

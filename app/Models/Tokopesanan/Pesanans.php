@@ -5,7 +5,7 @@ namespace App\Models\Tokopesanan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model; 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo; 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;  
 
 class Pesanans extends Model 
 {
@@ -20,7 +20,7 @@ class Pesanans extends Model
     protected $fillable =[
         'user_id', // Contoh field yang dapat diisi secara massal
         'nama_pesanan', 
-        'toko',
+        'nama_toko', 
         'total', 
     ];  
 

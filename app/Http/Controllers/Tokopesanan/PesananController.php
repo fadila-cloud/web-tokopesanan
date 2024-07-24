@@ -58,7 +58,7 @@ class PesananController extends Controller
         
         // Redirect back to the page with a success message
         return redirect()->route('pesanan.index')->with('success', 'Order berhasil dibuat.'); 
-        } catch (\Throwable $e) {
+    }   catch (\Throwable $e) {
         // Log error message if failed to create an order
         Log::error($e->getMessage()); 
 
@@ -111,7 +111,7 @@ class PesananController extends Controller
 
         // Redirect back to the page with a success message
         return redirect()->route('pesanan.index')->with('success', 'Sumber daya berhasil diperbarui');
-        } catch (\Throwable $e) {
+    }   catch (\Throwable $e) {
             // Log error message if failed to update book
             Log::error($e->getMessage());
             // Redirect back to the page with an error message
@@ -131,12 +131,12 @@ class PesananController extends Controller
         $pesanan->delete();
         // Redirect back to the page with a success message
         return redirect()->route('pesanan.index')->with('success', 'Sumber daya berhasil dihapus');
-        } catch (\Throwable $e) {
+    }   catch (\Throwable $e) {
             // Log error message if failed to delete order
             Log::error($e->getMessage());
   
             // Go back to the previous page with an error message
             return back()->withErrors(['error' => 'Sumber Daya gagal dihapus!']); 
-        }
+    }
     }    
 }
