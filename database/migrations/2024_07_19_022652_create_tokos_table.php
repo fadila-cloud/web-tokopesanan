@@ -14,12 +14,10 @@ class CreateTokosTable extends Migration
     {
         Schema::create('tokos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('nama');
-            $table->string('location'); 
+            $table->string('nama_toko'); 
+            $table->string('address'); 
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->constrained('users'); 
         });
     }
     /**
@@ -27,7 +25,7 @@ class CreateTokosTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void 
     {
         Schema::dropIfExists('tokos');
     }

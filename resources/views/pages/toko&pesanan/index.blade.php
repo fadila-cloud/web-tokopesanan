@@ -25,7 +25,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($toko as $toko) 
+            @foreach ($tokos as $toko) 
               <tr>
                 <th class="text-center">
                   <a href="{{ route('toko.show',$toko['id']) }}">
@@ -66,11 +66,11 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nama Pesanan</th>
-                            <th scope="col">Toko</th>
+                            <th scope="col">Ditoko</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pesanan as $pesanan)
+                        @foreach ($pesanans as $pesanan) 
                         <tr>
                             <th class="text-center">
                                 <a href="{{ route('pesanan.show', $pesanan['id']) }}">
@@ -81,7 +81,7 @@
                                 <p>{{ $pesanan['nama_pesanan'] }}</p>
                             </th>
                             <td>
-                                <p>{{ $pesanan['tanggal'] }}</p>
+                                <p>{{ $pesanan['tota'] }}</p>
                             </td>
                         </tr>
                         @endforeach

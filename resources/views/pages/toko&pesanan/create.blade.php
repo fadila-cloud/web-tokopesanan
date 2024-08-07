@@ -17,8 +17,8 @@
                 <input id="nama_toko" name="nama_toko" type="text" class="form-control" placeholder="Coffe Bar" required autocomplete="nama_toko">
               </div>
               <div class="col-span-6 sm:col-span-4">
-                <label for="lokasi" class="form-label fw-bold">{{ __('Lokasi') }}</label>
-                <input id="lokasi" name="lokasi" type="text" class="form-control" placeholder="Jl. Ahmad Yani, Blitar" required autocomplete="lokasi">
+                <label for="address" class="form-label fw-bold">{{ __('Lokasi') }}</label>
+                <input id="address" name="lokasi" type="text" class="form-control" placeholder="Jl. Ahmad Yani, Blitar" required autocomplete="address">
               </div>
             </div>
             <div class="col col-span-6 sm:col-span-4 text-end mt-2">

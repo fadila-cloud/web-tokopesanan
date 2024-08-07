@@ -14,12 +14,9 @@ class CreatePesananTokoTable extends Migration
     {
         Schema::create('pesanan_toko', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('toko_id'); 
-            $table->unsignedBigInteger('pesanan_id'); 
             $table->timestamps();
-
-            $table->foreign('toko_id')->references('id')->on('tokos')->onDelete('cascade');
-            $table->foreign('pesanan_id')->references('id')->on('pesanans')->onDelete('cascade');
+            $table->foreign('toko_id')->constrained('tokos');
+            $table->foreign('pesanan_id')->constrained('pesanan'); 
         });
     }
 
@@ -28,7 +25,7 @@ class CreatePesananTokoTable extends Migration
      *
      * @return void
      */ 
-    public function down()
+    public function down(): void 
     {
         Schema::dropIfExists('pesanan_toko');
     }
