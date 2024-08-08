@@ -25,7 +25,7 @@ class CreatePesananTokoTable extends Migration
      *
      * @return void
      */ 
-    public function down(): void 
+    public function down() 
     {
         Schema::dropIfExists('pesanan_toko');
     }

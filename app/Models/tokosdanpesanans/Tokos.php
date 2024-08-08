@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Models\Tokopesanan; 
+namespace App\Models\tokosdanpesanans;  
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,7 @@ class Tokos extends Model
 {
     use HasFactory;
 
-      /**
+    /**
    * The fields that are mass assignable.
    *
    * @var array
@@ -19,10 +19,10 @@ class Tokos extends Model
     protected $fillable = [
         'user_id',
         'nama_toko', 
-        'lokasi', 
+        'address', 
     ];  
 
-      /**
+    /**
    * Get the user associated with the model.
    *
    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -33,7 +33,7 @@ class Tokos extends Model
         return $this->belongsTo(User::class); 
     }
     
-    //banyak toko bole punya banyak pesanan (many to many)   
+    //banyak toko boleh punya banyak pesanan (many to many)   
     public function pesanans()
     {
         return $this->belongsToMany(Pesanans::class, 'pesanan_toko');   

@@ -17,8 +17,8 @@
                 <input id="nama_toko" name="nama_toko" type="text" class="form-control" placeholder="Coffe Bar" required autocomplete="nama_toko">
               </div>
               <div class="col-span-6 sm:col-span-4">
-                <label for="address" class="form-label fw-bold">{{ __('Lokasi') }}</label>
-                <input id="address" name="lokasi" type="text" class="form-control" placeholder="Jl. Ahmad Yani, Blitar" required autocomplete="address">
+                <label for="address" class="form-label fw-bold">{{ __('Address') }}</label>
+                <input id="address" name="address" type="text" class="form-control" placeholder="Jl. Ahmad Yani, Blitar" required autocomplete="address">
               </div>
             </div>
             <div class="col col-span-6 sm:col-span-4 text-end mt-2">
@@ -49,8 +49,8 @@
                 <input id="nama_pesanan" name="nama_pesanan" type="text" class="form-control" placeholder="Mukena" required autocomplete="nama_pesanan">
               </div>
               <div class="col-span-6 sm:col-span-4">
-                <label for="toko" class="form-label fw-bold">{{ __('Toko') }}</label>
-                <input id="toko" name="toko" type="text" class="form-control" placeholder="Toko Barokah" required autocomplete="toko">
+                <label for="total" class="form-label fw-bold">{{ __('Total') }}</label>
+                <input id="total" name="total" type="text" class="form-control" placeholder="Total" required autocomplete="total">
               </div>
             </div>
             <div class="col col-span-6 sm:col-span-4 text-end mt-2">

@@ -21,8 +21,8 @@
                 <input id="nama_toko" name="nama_toko" type="text" class="form-control" value="{{ $toko['nama_toko'] }}" placeholder="Coffe Bar" required autocomplete="nama_toko">
               </div>
               <div class="col-span-6 sm:col-span-4">
-                <label for="lokasi" class="form-label fw-bold">{{ __('Alamat Toko') }}</label>
-                <input id="lokasi" name="lokasi" type="text" class="form-control" value="{{ $toko['address'] }}" placeholder="Jl. Ahmad Yani, Blitar" required autocomplete="address">
+                <label for="address" class="form-label fw-bold">{{ __('Address Toko') }}</label>
+                <input id="address" name="address" type="text" class="form-control" value="{{ $toko['address'] }}" placeholder="Jl. Ahmad Yani, Blitar" required autocomplete="address">
               </div>
             </div>
             <div class="col col-span-6 sm:col-span-4 text-end mt-2">
@@ -57,8 +57,8 @@
                 <input id="nama_pesanan" name="nama_pesanan" type="text" class="form-control" value="{{ $pesanan['nama_pesanan'] }}" placeholder="Pakaian" required autocomplete="nama_pesanan">
               </div>
               <div class="col-span-6 sm:col-span-4">
-                <label for="lokasi" class="form-label fw-bold">{{ __('Lokasi Toko') }}</label>
-                <input id="lokasi" name="lokasi" type="text" class="form-control" value="{{ $data['lokasi'] }}" placeholder="Jl. Ahmad Yani, Blitar" required autocomplete="lokasi">
+                <label for="total" class="form-label fw-bold">{{ __('Total Pesanan') }}</label>
+                <input id="total" name="total" type="text" class="form-control" value="{{ $pesanan['total'] }}" placeholder="Rp 30.000" required autocomplete="total">
               </div>
             </div>
             <div class="col col-span-6 sm:col-span-4 text-end mt-2">

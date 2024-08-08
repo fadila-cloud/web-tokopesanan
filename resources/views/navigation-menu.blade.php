@@ -16,11 +16,13 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('toko.index') }}" :active="request()->routeIs('toko.index')">
-                        {{ __('Toko') }}
-                    </x-nav-link>
-                </div>
+                @if(Route::has('toko.index')) 
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link href="{{ route('toko.index') }}" :active="request()->routeIs('toko.index')">
+                            {{ __('Toko') }}
+                        </x-nav-link>
+                    </div>
+                @endif 
             </div>
 
 

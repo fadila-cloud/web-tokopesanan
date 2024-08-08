@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Tokopesanan; 
+namespace App\Models\tokosdanpesanans; 
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model; 
@@ -16,21 +16,21 @@ class Pesanans extends Model
    * @var array
    */
     
-   protected $table = 'pesanan'; // Nama tabel di database
+   protected $table = 'pesanan';
     protected $fillable =[
-        'user_id', // Contoh field yang dapat diisi secara massal
+        'user_id', 
         'nama_pesanan', 
         'nama_toko', 
         'total', 
     ];  
 
-      /**
+    /**
    * Get the user associated with the model.
    *
    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
    */ 
     //relasi ke modal user, setiap pesanans punya 1 user 
-    public function user() 
+    public function user(): BelongsTo 
     {
         return $this->belongsTo(User::class); 
     }
