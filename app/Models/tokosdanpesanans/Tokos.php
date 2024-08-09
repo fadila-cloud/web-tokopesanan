@@ -16,6 +16,8 @@ class Tokos extends Model
    *
    * @var array
    */ 
+  
+   protected $table = 'toko'; 
     protected $fillable = [
         'user_id',
         'nama_toko', 

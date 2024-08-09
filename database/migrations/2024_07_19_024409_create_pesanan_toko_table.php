@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Schema;
 class CreatePesananTokoTable extends Migration
 {
     /**
-     * menjalankan migrasi
+     * Run the migrations. 
      *
      * @return void
      */ 
-    public function up()
+    public function up(): void 
     {
         Schema::create('pesanan_toko', function (Blueprint $table) {
             $table->id();
@@ -21,11 +21,11 @@ class CreatePesananTokoTable extends Migration
     }
 
     /**
-     * membalikkan migrasi
+     * Reverse the migrations.
      *
      * @return void
      */ 
-    public function down() 
+    public function down(): void
     {
         Schema::dropIfExists('pesanan_toko');
     }

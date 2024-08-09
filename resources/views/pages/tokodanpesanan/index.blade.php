@@ -21,30 +21,19 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nama Toko</th>
-            <th scope="col">Lokasi</th>
+            <th scope="col">Address</th>
           </tr>
           </thead>
           <tbody>
-          @if($tokos) @endif
           @foreach ($tokos as $toko) 
             <tr>
               <th class="text-center">
-                <a href="{{ route('toko.show',$toko['id']) }}">
-                  <p>
-                    {{ $toko['id'] }}
-                  </p>
+                <a href="{{ route('toko.show', $toko['id']) }}">
+                  <p>{{ $toko['id'] }}</p>
                 </a>
               </th>
-              <th>
-                <p>
-                  {{ $toko['nama_toko'] }}
-                </p>
-              </th>
-              <td>
-                <p>
-                  {{ $toko['address'] }}
-                </p>
-              </td>
+              <th><p>{{ $toko['nama_toko'] }}</p></th>
+              <td><p>{{ $toko['address'] }}</p></td>
             </tr>
           @endforeach
           </tbody>

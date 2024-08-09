@@ -4,22 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use SebastianBergmann\Type\VoidType;
-
-class CreatePesanansTable extends Migration
+ 
+class CreatePesananTable extends Migration
 {
     /**
      * Run the migrations.
      * @return void
      */ 
-    public function up()
+    public function up(): void 
     { 
-        Schema::create('pesanans', function (Blueprint $table) {
+        Schema::create('pesanan', function (Blueprint $table) {
             $table->id(); 
             $table->string('nama_pesanan'); 
-            $table->decimal('total', 10, 2);  
+            $table->decimal('total');  
             $table->timestamps();
-            $table->foreign('user_id')->constrained('users'); 
             $table->foreign('toko_id')->constrained('tokos');
+            $table->foreign('user_id')->constrained('users'); 
         });
     } 
     /**
@@ -29,6 +29,6 @@ class CreatePesanansTable extends Migration
      */     
     public function down(): void 
     {
-        Schema::dropIfExists('pesanans');
+        Schema::dropIfExists('pesanan');
     }
 }

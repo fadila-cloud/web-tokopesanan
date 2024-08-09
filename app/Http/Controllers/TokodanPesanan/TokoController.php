@@ -15,7 +15,7 @@ class TokoController extends Controller
   /**
    * Display a listing of the resource.
    */
-  //menampilkan daftar toko dan daftar pesanan
+  //menampilkan daftar toko
   public function index()
   { 
     $toko = Tokos::all(); 
@@ -25,10 +25,10 @@ class TokoController extends Controller
       return redirect()->route('login')->with('error', 'Anda harus login terlebih dahulu.'); 
     }
     // Get all the stores and the orders ordered and searched by the user 
-    $tokos = user::find($user_id)->tokos; 
+    $toko = user::find($user_id)->tokos; 
     
     // Return the page view with order and store has been searched and ordered
-    return view('pages.tokodanpesanan.index', compact('tokos'));   
+    return view('pages.tokodanpesanan.index', compact('toko'));   
   }
 
   /** 
@@ -37,8 +37,8 @@ class TokoController extends Controller
   //menampilkan form untuk merubah toko 
   public function create()
   {
-    /** Return the form view to create a new store and order
-      * Mengembalikan tampilan formulir untuk membuat toko dan pesanan baru
+    /** Return the form view to create a new store 
+      * Mengembalikan tampilan formulir untuk membuat toko 
       */ 
     return view('pages.tokodanpesanan.create');
   }
@@ -48,14 +48,14 @@ class TokoController extends Controller
     */ 
   public function store(Request $request)
   {
-    // Validate the input data dari toko dan pesanan
+    // Validate the input data dari toko
     $request->validate([ 
       'nama_toko' => 'required', 
       'address'=> 'required', 
     ]);
   
-    /** Simpan data toko dan pesanan baru ke database 
-      * membuat pesanan
+    /** Simpan data toko ke database 
+      *
       */
     try {
       Tokos::create([  
@@ -81,14 +81,14 @@ class TokoController extends Controller
   public function show(Tokos $toko)  
   {
     // Get store data with connected user information
-    $toko = Tokos::with('user')->find($toko );  
+    $toko = Tokos::with('user')->find($toko);  
 
     // Periksa apakah data ditemukan
     if ($toko === null) {
       return redirect()->routes('toko.index')->with('erorr', 'Toko tidak ditemukan'); 
     }
-    // Return the page view with store and order
-    return view('pages.tokodanpesanan.show', compact('tokos'));    
+    // Return the page view with store 
+    return view('pages.tokodanpesanan.show', compact('toko'));    
   }
     
   /**
@@ -99,12 +99,12 @@ class TokoController extends Controller
     // Find a store based on the store
     $toko = Tokos::findOrFail($id); 
     // Return the form view edit with the store data
-    return view('pages.tokopesanan.edit', compact('tokos'));  
+    return view('pages.tokopesanan.edit', compact('toko'));  
   }
     
   /**
     * Update the specified resource in storage
-    * memperbarui toko dan pesanan di database
+    * memperbarui toko di database
     */
   public function update(Request $request, string $id) 
   {
@@ -118,7 +118,7 @@ class TokoController extends Controller
     try {
       // Find a store based on the id
       $toko = Tokos::findOrFail($id);  
-      // Update nama toko dan pesanan
+      // Update nama toko
       $toko->nama_toko = $request->nama_toko; 
       $toko->address = $request->address;
       // Save the changes

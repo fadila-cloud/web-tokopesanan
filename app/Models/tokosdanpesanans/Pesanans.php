@@ -16,11 +16,10 @@ class Pesanans extends Model
    * @var array
    */
     
-   protected $table = 'pesanan';
+   protected $table = 'pesanan'; // Nama tabel di database 
     protected $fillable =[
         'user_id', 
         'nama_pesanan', 
-        'nama_toko', 
         'total', 
     ];  
 
