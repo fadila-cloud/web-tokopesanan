@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\TokodanPesanan;
 
 use App\Http\Controllers\Controller;
-use App\Models\tokosdanpesanans\Pesanans; 
+use App\Models\tokosdanpesanans\Pesanan;  
 use App\Models\User;
 use Illuminate\Http\Request;
 use Livewire\Exceptions\PublicPropertyNotFoundException;
@@ -20,7 +20,7 @@ class PesananController extends Controller
             return redirect()->back()->with("error,  Anda harus login terlebih dahulu"); 
         }
         //mengambil semua pesanan dari user
-        $pesanan = user::find($user_id)->pesanans; 
+        $pesanan = user::find($user_id)->pesanan; 
         //menegmbalikan halaman page
         return view('pages.tokodanpesanan.index', compact('pesanan'));  
     }
@@ -29,7 +29,7 @@ class PesananController extends Controller
     {
         $user_id = Auth::user();
         if ($user_id) {
-            $pesanan = $user_id->pesanans; 
+            $pesanan = $user_id->pesanan; 
         return view('pages.tokodanpesanan.create', compact('pesanan'));   
         } else {
             Log::error('User is not authenticated.');
@@ -40,13 +40,16 @@ class PesananController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_pesanan' => $request->pesanans,
-            'total' => $request->total,
+            'nama_pesanan' => $request->pesanan, 
+            'total' => $request->total, 
         ]);
+
+        // Try to create a new order
         try {
-            Pesanans::create([
-                'nama_pesanan' => $request->pesanans,
+            Pesanan::create([
+                'nama_pesanan' => $request->pesanan,
                 'total' => $request->total,
+                'user-id' => Auth::user()->id, 
             ]);
             return redirect()->route('pesanan.index')->with('success', 'Order berhasi dibuat.');
         }   catch (\Throwable $e) { 
@@ -55,27 +58,36 @@ class PesananController extends Controller
         }
     }
 
-    public function show($id)
+    public function show(string $id) 
     {
-        $pesanan = Pesanans::with('user')->find($id);
-        return view('pages.tokodanpesanan.show', compact('pesanans')); 
+        $pesanan = Pesanan::with('user')->find($id);
+        return view('pages.tokodanpesanan.show', compact('pesanan')); 
     }
 
-    public function edit(Pesanans $pesanan)
+    public function edit(string $id)
     {
-        return view('pages.tokodanpesanan.edit', compact('pesanans'));
+        $pesanan = Pesanan::finfOrFail($id); 
+        return view('pages.tokodanpesanan.edit', compact('pesanan'));
     }
 
-    public function update(Request $request, Pesanans $pesanan)
+    public function update(Request $request, string $id)
     {
+        //Validate the input data 
         $request->validate([
             'nama_pesanan' => 'required',
             'total' => 'required',
         ]);
 
+        // Try to update the order 
         try {
+            // Find a order based on the id
+            $pesanan = Pesanan::findOrFail($id); 
+
+            // Update the order name 
             $pesanan->nama_pesanan = $request->nama_pesanan;
             $pesanan->total = $request->total;
+
+            // Save the changes 
             $pesanan->save(); 
             return redirect()->route('pesanans.index')->with('succes', 'Pesanan berhasil diperbarui');
         }   catch (\Throwable $e) {
@@ -84,10 +96,12 @@ class PesananController extends Controller
         }
     }
 
-    public function destroy(Pesanans $pesanan) 
+    public function destroy(string $id)   
     {
         try {
+            $pesanan = Pesanan::findOrFail($id); 
             $pesanan->delete();
+
             return redirect()->route('pesanan.index')->with('succes', 'Pesanan berhasil dihapus');
         }   catch (\Throwable $e) {
             Log::error($e->getMessage());

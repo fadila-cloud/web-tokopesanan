@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Tokosdanpesanans\Pesanans;
-use App\Models\Tokosdanpesanans\Tokos; 
+use App\Models\Tokosdanpesanans\Pesanan;
+use App\Models\Tokosdanpesanans\Toko; 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -71,9 +71,9 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     //satu user boleh punya banyak toko
-    public function tokos()
+    public function toko()
     {
-        return $this->hasMany(Tokos::class);  
+        return $this->hasMany(Toko::class);  
     }
 
     /**
@@ -82,8 +82,8 @@ class User extends Authenticatable
    * @return \Illuminate\Database\Eloquent\Relations\HasMany
    */
     //satu user boleh punya banyak pesanan 
-    public function pesanans() 
+    public function pesanan() 
     {
-        return $this->hasMany(Pesanans::class);   
+        return $this->hasMany(Pesanan::class);   
     }
 }

@@ -63,8 +63,8 @@
                   </tr>
               </thead>
               <tbody>
-              @if($pesanans)
-              @foreach ($pesanans as $pesanan) 
+              @if($pesanan)
+              @foreach ($pesanan as $pesanan) 
               <tr>
                   <th class="text-center">
                     <a href="{{ route('pesanan.show', $pesanan['id']) }}">

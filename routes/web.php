@@ -19,9 +19,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 });
 
 // The fallback method is used to define a route that will be executed when no other route matches the incoming request.
-Route::fallback(function () {
+Route::fallback(function () { 
   //When no other route is matched, the 'error' view is displayed
   return view('layout.error'); 
-}); 
+});  
  
 

@@ -24,14 +24,6 @@
                         </x-nav-link>
                     </div>
                 @endif 
-
-                @if(Route::has('pesanan.index'))
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link href="{{ route('pesanan.index')}}" :active="request()->routeIs('pesanan.*')">
-                            {{ __('Pesanan') }}
-                        </x-nav-link>
-                    </div>
-                @endif 
             </div>
 
 

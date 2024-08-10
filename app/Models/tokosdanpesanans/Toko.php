@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo; 
 
-class Tokos extends Model 
+class Toko extends Model 
 {
     use HasFactory;
 
@@ -36,8 +36,8 @@ class Tokos extends Model
     }
     
     //banyak toko boleh punya banyak pesanan (many to many)   
-    public function pesanans()
+    public function pesanan()
     {
-        return $this->belongsToMany(Pesanans::class, 'pesanan_toko');   
+        return $this->belongsToMany(Pesanan::class, 'pesanan_toko');   
     }
 }
